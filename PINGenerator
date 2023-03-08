@@ -1,1 +1,26 @@
 
+public class PINGenerator {
+ public static void main(String[] args) {
+ int[] numArray = {1, 22, 123, 4242, 45, 46};
+ char[] encodedArray = new char[numArray.length];
+ for (int i = 0; i < numArray.length; i++) {
+ int sum = 0;
+ int n = numArray[i];
+ while (n > 0 || sum > 9) {
+ if (n == 0) {
+ n = sum;
+ sum = 0;
+ }
+ sum += n % 10;
+ n /= 10;
+ }
+ if (sum % 2 == 1) {
+ encodedArray[i] = (char) ('a' + sum - 1);
+ } else {
+ encodedArray[i] = (char) (sum + '0');
+ }
+ }
+ String PIN = new String(encodedArray);
+ System.out.println(PIN);
+ }
+}
